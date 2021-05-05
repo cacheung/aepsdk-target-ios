@@ -11,20 +11,21 @@
  governing permissions and limitations under the License.
  */
 
+
 import PackageDescription
 
 let package = Package(
- name: "AEPTarget",
- platforms: [.iOS(.v10)],
- products: [
-  .library(name: "AEPTarget", targets: ["AEPTarget"]),
- ],
- dependencies: [
-   .package(name: "AEPCore", url: "https://github.com/adobe/aepsdk-core-ios.git", from: "3.0.0"),
- ],
- targets: [
-  .target(name: "AEPTarget",
-          dependencies: ["AEPCore", "AEPServices"],
-          path: "AEPTarget/Sources"),
- ]
+    name: "AEPTarget",
+    platforms: [.iOS(.v10)],
+    products: [
+        .library(name: "AEPTarget", targets: ["AEPTarget"]),
+    ],
+    dependencies: [
+        .package(name: "AEPCore", url: "https://github.com/adobe/aepsdk-core-ios.git", from: "3.0.0"),
+    ],
+    targets: [
+        .target(name: "AEPTarget",
+                dependencies: ["AEPCore", .product(name: "AEPServices", package: "AEPCore")],
+                path: "AEPTarget/Sources")
+    ]
 )
